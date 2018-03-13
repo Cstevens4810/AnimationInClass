@@ -14,7 +14,6 @@
         android:title="@string/raw_anim"
         app:showAsAction="never" />
 
-
     <item
         android:id="@+id/obj_animation"
         android:orderInCategory="51"
@@ -41,8 +40,18 @@
         android:title="@string/rotate_anim"
         app:showAsAction="never" />
     <item
-        android:id="@+id/moverotate_animation"
+        android:id="@+id/spin_animation"
         android:orderInCategory="55"
+        android:title="@string/spin"
+        app:showAsAction="never"
+        />
+    <item android:id="@+id/dribble_animation"
+        android:orderInCategory="56"
+        android:title="@string/dribble"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/moverotate_animation"
+        android:orderInCategory="57"
         android:title="@string/moverotate_anim"
         app:showAsAction="never" />
     <item
@@ -60,6 +69,5 @@
         android:orderInCategory="62"
         android:title="@string/moverotatecolor_anim"
         app:showAsAction="never" />
-
 
 </menu>

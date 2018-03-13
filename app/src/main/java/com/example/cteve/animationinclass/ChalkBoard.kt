@@ -5,6 +5,7 @@ package com.example.cteve.animationinclass
  */
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
@@ -14,6 +15,7 @@ import android.view.WindowManager
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.BounceInterpolator
 import android.view.animation.DecelerateInterpolator
+import android.view.animation.LinearInterpolator
 
 class ChalkBoard //Constructor - initialize this View
 (context: Context) : View(context) {
@@ -63,6 +65,8 @@ class ChalkBoard //Constructor - initialize this View
 
     fun wander() {
         val anim: ObjectAnimator //used in many cases below
+        val anim1: ObjectAnimator
+        val anim2: ObjectAnimator
         if (moveFlag) {
             oldX = startX
             oldY = top
@@ -107,6 +111,18 @@ class ChalkBoard //Constructor - initialize this View
             ROTATE -> {
                 anim = getObjectAnimator(700, "angle", 0.0f, 360.0f)
                 anim.start()
+            }
+            SPIN ->{
+                anim = getObjectAnimator(700, "angle", 0.0f, 720.0f)
+                anim.start()
+            }
+            DRIBBLE ->{
+                anim = getObjectAnimator(500, "fraction", 0.0f, 1.0f) //local method
+                anim1 = getObjectAnimator(500, "fraction", 0.0f, 1.0f)
+                anim1.interpolator = BounceInterpolator()
+                val doDribble = AnimatorSet()
+                doDribble.play(anim1).after(anim)
+                doDribble.start()
             }
             MOVE_ROTATE -> {
                 val moving = getObjectAnimator(500, "fraction", 0.0f, 1.0f)
@@ -186,6 +202,8 @@ class ChalkBoard //Constructor - initialize this View
         const val DECELERATE = 3 //Constant to indicate decelerate-at-end movement animation
         const val BOUNCE = 4 //Constant to indicate bounce-at-end movement animation
         const val ROTATE = 5 //Constant to indicate rotate around View center animation
+        const val SPIN = 6 //Constant for spin
+        const val DRIBBLE = 7
         const val MOVE_ROTATE = 9 //Constant to indicate move and rotate simultaneously animation
         const val COLOR_ACC = 11 //Constant to indicate transition color animation
         const val MOVE_RECOLOR = 12 //Constant to indicate move and change color simultaneously

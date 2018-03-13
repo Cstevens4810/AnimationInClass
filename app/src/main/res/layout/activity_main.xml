@@ -30,6 +30,4 @@
         app:srcCompat="@android:drawable/ic_dialog_email" />
 
 
-    <item name="android:windowActionBarOverlay">true</item>
-
 </android.support.design.widget.CoordinatorLayout>
